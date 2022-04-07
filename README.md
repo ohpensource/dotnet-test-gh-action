@@ -1,6 +1,8 @@
 # dotnet-test-gh-action
 
-This action performs a _dotnet test_ on any solution (.sln file) inside the specified folder. The (required) input is _app-path_. Here is an example:
+This action performs a _dotnet test_ on any solution (.sln file) inside the specified folder. The (required) input is _app-path_. 
+
+Here is an example:
 
 ```yaml
 name: CI
