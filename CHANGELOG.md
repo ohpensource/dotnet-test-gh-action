@@ -1,3 +1,9 @@
+# :confetti_ball: 0.1.2 (2022-04-07T13:45:18.829Z)
+- - -
+## :bug: Fixes
+* LANZ-2215 fixed error in the example of how to use this gh action in the readme.md. (#6)
+- - -
+- - -
 # :confetti_ball: 0.1.1 (2022-04-07T13:31:54.548Z)
 - - -
 ## :bug: Fixes
