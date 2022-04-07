@@ -1,0 +1,11 @@
+name: "run-dotnet-tests"
+description: "runs dotnet tests inside a .sln recursively"
+inputs:
+  sln-folder:
+    description: "path where the .sln files are located"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/run-dotnet-tests.sh ${{ inputs.sln-folder }}
+      shell: bash
