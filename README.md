@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ohpensource/dotnet-test-gh-action@latest
+      - uses: ohpensource/dotnet-test-gh-action@v0.1.0
         name: Test dotnet application
         with:
           app-path: "src"
