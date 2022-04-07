@@ -42,3 +42,11 @@ jobs:
         with:
           script: |
               core.setFailed('Include documentation in the README.md file!')
+  test-main-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Execute script
+        run: ./run-dotnet-tests.sh "test-gh-action"

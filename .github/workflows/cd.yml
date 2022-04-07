@@ -10,6 +10,10 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.CICD_GITHUB_REPOSITORY_TOKEN }}
+      - uses: ohpensource/dotnet-test-gh-action@latest
+        name: test gh action
+        with:
+          sln-folder: "test-gh-action"
       - uses: ohpensource/platform-cicd/actions/git/generate-version-and-release-notes@4.0.0.0
         name: semver & changelog
         with:
