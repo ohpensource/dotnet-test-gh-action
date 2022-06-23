@@ -1,11 +1,43 @@
 name: "run-dotnet-tests"
 description: "runs dotnet tests inside a .sln recursively"
 inputs:
-  sln-folder:
-    description: "path where the .sln files are located"
+  sln:
+    description: "path to the .sln file"
     required: true
+  create-reports:
+    description: "path where the .sln files are located"
+    required: false
+    default: 'false'
+
+
+
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/run-dotnet-tests.sh ${{ inputs.sln-folder }}
+    - name: Execute UT
+      env:
+        SLN: ${{ inputs.sln }}
+        CREATE_REPORTS: ${{ inputs.create-reports }}
+        UT_RESULTS_FOLDER: "UT_RESULTS"
+      run: ${{ github.action_path }}/run-dotnet-tests.sh
+      shell: bash
+    - name: Create UT Reports
+      if: ${{ inputs.create-reports == 'true' }}
+      env:
+        UT_RESULTS_FOLDER: "UT_RESULTS"
+      run: |
+          id_folder=$(ls $UT_RESULTS_FOLDER)
+          COBERTURA_REPORT="$UT_RESULTS_FOLDER/$id_folder/coverage.cobertura.xml"
+          echo "COBERTURA_REPORT=$COBERTURA_REPORT" >> $GITHUB_ENV
+      shell: bash
+    - name: Code Coverage Summary Report
+      if: ${{ inputs.create-reports == 'true' }}      
+      uses: irongut/CodeCoverageSummary@v1.2.0
+      with:
+        filename: ${{ env.COBERTURA_REPORT }}
+        format: markdown
+        output: both
+    - name: Add Report to Code GITHUB_STEP_SUMMARY
+      if: ${{ inputs.create-reports == 'true' }}      
+      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       shell: bash
