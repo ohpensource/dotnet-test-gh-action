@@ -1,3 +1,9 @@
+# :confetti_ball: 0.2.1 (2022-07-08T12:53:55.436Z)
+- - -
+## :bug: Fixes
+* LANZ-2724 updated reamd (#9)
+- - -
+- - -
 # :confetti_ball: 0.2.0 (2022-07-08T12:49:13.688Z)
 - - -
 ## :hammer: Features
