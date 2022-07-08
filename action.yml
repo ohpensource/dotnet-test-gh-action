@@ -27,6 +27,8 @@ runs:
         filename: ${{ env.REPORTS_FILES }}
         format: markdown
         output: both
+        hide_branch_rate: true
+        hide_complexity: true
     - name: Add Report to Code GITHUB_STEP_SUMMARY
       if: ${{ inputs.add-reports-to-job-summary == 'true' }}      
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
