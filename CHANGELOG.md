@@ -1,3 +1,9 @@
+# :confetti_ball: 0.2.2 (2022-07-08T13:13:26.688Z)
+- - -
+## :bug: Fixes
+* LANZ-2724 simplified report output (#10)
+- - -
+- - -
 # :confetti_ball: 0.2.1 (2022-07-08T12:53:55.436Z)
 - - -
 ## :bug: Fixes
