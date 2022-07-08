@@ -4,8 +4,30 @@ inputs:
   sln-folder:
     description: "path where the .sln files are located"
     required: true
+  add-reports-to-job-summary:
+    description: "add reports as markdown to the job summary"
+    required: false
+    default: 'false'
+
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/run-dotnet-tests.sh ${{ inputs.sln-folder }}
+    - name: Test Projects
+      shell: bash
+      id: test-projects
+      env:
+        ADD_REPORTS_TO_JOB_SUMMARY: ${{ inputs.add-reports-to-job-summary }}
+      run: |
+        source ${{ github.action_path }}/functions/logger.sh
+        ${{ github.action_path }}/run-dotnet-tests.sh ${{ inputs.sln-folder }}
+    - name: Code Coverage Summary Report
+      if: ${{ inputs.add-reports-to-job-summary == 'true' }}
+      uses: irongut/CodeCoverageSummary@v1.2.0
+      with:
+        filename: ${{ env.REPORTS_FILES }}
+        format: markdown
+        output: both
+    - name: Add Report to Code GITHUB_STEP_SUMMARY
+      if: ${{ inputs.add-reports-to-job-summary == 'true' }}      
+      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       shell: bash
