@@ -1,3 +1,9 @@
+# :confetti_ball: 0.2.0 (2022-07-08T12:49:13.688Z)
+- - -
+## :hammer: Features
+* LANZ-2724 update GH action to also add the report summary in the Summary. (#8)
+- - -
+- - -
 # :confetti_ball: 0.1.3 (2022-05-11T08:44:06.361Z)
 - - -
 ## :newspaper: Others
