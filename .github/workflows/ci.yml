@@ -49,4 +49,6 @@ jobs:
         with:
           fetch-depth: 0
       - name: Execute script
-        run: ./run-dotnet-tests.sh "test-gh-action"
+        run: |
+          source functions/logger.sh
+          ./run-dotnet-tests.sh "test-gh-action"
