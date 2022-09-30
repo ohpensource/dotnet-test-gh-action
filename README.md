@@ -16,7 +16,7 @@ jobs:
         name: Test dotnet application
         with:
           sln-folder: "src"
-          add-reports-to-job-summary: "false"
+          add-reports-to-job-summary: false
 ```
 
 ## Test Reports in the Job Summary
@@ -35,7 +35,7 @@ jobs:
         name: Test dotnet application
         with:
           sln-folder: "src"
-          add-reports-to-job-summary: "true"  # enable this
+          add-reports-to-job-summary: true  # enable this
 ```
 
 output example:
