@@ -19,7 +19,7 @@ runs:
         ADD_REPORTS_TO_JOB_SUMMARY: ${{ inputs.add-reports-to-job-summary }}
       run: |
         source ${{ github.action_path }}/functions/logger.sh
-        ${{ github.action_path }}/run-dotnet-tests.sh ${{ inputs.sln-folder }}
+        ${{ github.action_path }}/run-dotnet-tests.sh "${{ inputs.sln-folder }}"
     - name: Code Coverage Summary Report
       if: ${{ inputs.add-reports-to-job-summary == 'true' }}
       uses: irongut/CodeCoverageSummary@v1.2.0
