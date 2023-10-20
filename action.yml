@@ -8,6 +8,10 @@ inputs:
     description: "add reports as markdown to the job summary"
     required: false
     default: 'false'
+  test-filter:
+    description: Filter expression to include in the dotnet test command
+    required: false
+    default: ""
 
 runs:
   using: "composite"
@@ -19,7 +23,7 @@ runs:
         ADD_REPORTS_TO_JOB_SUMMARY: ${{ inputs.add-reports-to-job-summary }}
       run: |
         source ${{ github.action_path }}/functions/logger.sh
-        ${{ github.action_path }}/run-dotnet-tests.sh "${{ inputs.sln-folder }}"
+        ${{ github.action_path }}/run-dotnet-tests.sh "${{ inputs.sln-folder }}" "${{ inputs.test-filter }}"
     - name: Code Coverage Summary Report
       if: ${{ inputs.add-reports-to-job-summary == 'true' }}
       uses: irongut/CodeCoverageSummary@v1.2.0

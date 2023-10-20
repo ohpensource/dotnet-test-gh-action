@@ -4,6 +4,9 @@ log_action "testing"
 SLN_FOLDER=$1
 log_key_value_pair "sln-folder" $SLN_FOLDER
 
+TEST_FILTER=$2
+log_key_value_pair "test-filter" $TEST_FILTER
+
 REGEX="$SLN_FOLDER/*.sln"
 log_key_value_pair "regex" "$SLN_FOLDER/*.sln"
 REPORTS_FILES=""
@@ -16,7 +19,8 @@ for sln_path in $REGEX; do
     echo "::group::testing $PROJECT"
     if [[ "$ADD_REPORTS_TO_JOB_SUMMARY" == "true" ]]; then
         report_folder="./REPORTS/$PROJECT"
-        dotnet test $sln_path -c Release --collect:"XPlat Code Coverage" --results-directory $report_folder
+        dotnet test $sln_path -c Release --collect:"XPlat Code Coverage" --results-directory $report_folder \
+            $([ "$TEST_FILTER" != "" ] && echo "--filter $TEST_FILTER")
 
         new_path="./REPORTS/$PROJECT.coverage.cobertura.xml"    
         cp $report_folder/**/coverage.cobertura.xml $new_path   # moving report file to a common folder REPORTS
@@ -24,7 +28,8 @@ for sln_path in $REGEX; do
 
         REPORTS_FILES+="$new_path,"
     else
-        dotnet test $sln_path -c Release
+        dotnet test $sln_path -c Release \
+            $([ "$TEST_FILTER" != "" ] && echo "--filter $TEST_FILTER")
     fi
     echo "::endgroup::"
 done
