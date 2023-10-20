@@ -1,3 +1,9 @@
+# :confetti_ball: 0.3.0 (2023-10-20T11:59:02.827Z)
+- - -
+## :hammer: Features
+* MLA-816 Add test-filter argument to the action (#12)
+- - -
+- - -
 # :confetti_ball: 0.2.3 (2022-09-30T20:23:59.932Z)
 - - -
 ## :bug: Fixes
