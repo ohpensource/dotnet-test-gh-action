@@ -36,6 +36,7 @@ jobs:
         with:
           sln-folder: "src"
           add-reports-to-job-summary: true  # enable this
+          test-filter: FullyQualifiedName~UnitTests # optinal --filter argumetn for dotnet test command
 ```
 
 output example:
